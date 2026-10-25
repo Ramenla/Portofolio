@@ -374,8 +374,13 @@ function App() {
                 <p className="section-index label-caps mono">— 03</p>
                 <h2 className="section-title">Featured Projects</h2>
               </div>
-              <a href="#site-footer" className="btn btn--ghost btn--sm">
-                Get in touch <ArrowRight aria-hidden="true" />
+              <a
+                href="https://github.com/Ramenla"
+                className="btn btn--bare btn--sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View All Work <ArrowRight aria-hidden="true" />
               </a>
             </div>
             <div className="project-list">

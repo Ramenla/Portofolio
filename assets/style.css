@@ -23,12 +23,18 @@
   --color-muted: #4f4d48;
   --color-panel: var(--color-white);
   --color-border: rgba(13, 13, 13, 0.14);
-  --project-bg: #ffffff;
-  --project-card-bg: #f8f7f4;
-  --project-text: var(--color-black);
-  --project-muted: #4f4d48;
-  --project-border: rgba(13, 13, 13, 0.16);
-  --project-hover: rgba(13, 13, 13, 0.05);
+  /* Project band is a dark band in light mode (same inverted-band pattern as
+     the about section), so its tokens use the dark-surface palette. */
+  --project-bg: var(--color-black);
+  --project-card-bg: #171816;
+  --project-text: #f1eee8;
+  --project-muted: #c6c2ba;
+  --project-border: rgba(255, 255, 255, 0.18);
+  --project-hover: rgba(255, 255, 255, 0.08);
+  /* Accent on the dark band: --color-taupe is the light-bg variant. */
+  --project-tag: #d0af91;
+  /* Empty-state placeholders sit on the card, so they follow the card surface. */
+  --project-placeholder: rgba(255, 255, 255, 0.15);
   --about-bg: #0d0d0d;
   --about-text: #f1eee8;
   --about-muted: #c6c2ba;
@@ -112,12 +118,16 @@
   --color-taupe: #d0af91;
   --color-grey: #c6c2ba;
   --color-beige: #292a26;
-  --project-bg: #171816;
-  --project-card-bg: #232420;
-  --project-text: #f1eee8;
-  --project-muted: #c6c2ba;
-  --project-border: rgba(255, 255, 255, 0.18);
-  --project-hover: rgba(255, 255, 255, 0.08);
+  /* The project band is the inverse of the light theme: a light band on the
+     dark page, so its tokens use the light-surface palette. */
+  --project-bg: var(--color-white);
+  --project-card-bg: #f8f7f4;
+  --project-text: var(--color-black);
+  --project-muted: #4f4d48;
+  --project-border: rgba(13, 13, 13, 0.16);
+  --project-hover: rgba(13, 13, 13, 0.05);
+  --project-tag: #63452f;
+  --project-placeholder: rgba(13, 13, 13, 0.2);
   --name-block-bg: var(--color-white);
   --name-block-text: var(--color-black);
   --about-bg: #ffffff;
@@ -312,6 +322,18 @@ h6 {
 
 .btn--ghost:hover {
   border-color: var(--color-black);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Borderless Button — text-only CTA, keeps the hover fill for affordance */
+.btn--bare {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: transparent;
+}
+
+.btn--bare:hover {
+  border-color: transparent;
   background-color: rgba(0, 0, 0, 0.04);
 }
 
@@ -717,6 +739,7 @@ h6 {
   color: var(--about-text);
   width: 100%;
   max-width: 100%;
+  text-align: justify;
 }
 
 /* Details list */
@@ -850,6 +873,15 @@ h6 {
   background-color: var(--project-hover);
 }
 
+.section--project .btn--bare {
+  color: var(--project-text);
+}
+
+.section--project .btn--bare:hover {
+  color: var(--project-text);
+  background-color: var(--project-hover);
+}
+
 .project-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -944,12 +976,12 @@ h6 {
 }
 
 .project-tag {
-  color: var(--color-taupe);
+  color: var(--project-tag);
 }
 
 .project-tag:empty::before {
   content: "Project";
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--project-placeholder);
 }
 
 .project-year {
@@ -958,7 +990,7 @@ h6 {
 
 .project-year:empty::before {
   content: "2025";
-  color: rgba(255, 255, 255, 0.1);
+  color: var(--project-placeholder);
 }
 
 .project-title {
@@ -970,7 +1002,7 @@ h6 {
 
 .project-title:empty::before {
   content: "Project Name";
-  color: rgba(255, 255, 255, 0.15);
+  color: var(--project-placeholder);
 }
 
 .project-desc {
@@ -982,7 +1014,7 @@ h6 {
 
 .project-desc:empty::before {
   content: "Project description goes here.";
-  color: rgba(255, 255, 255, 0.1);
+  color: var(--project-placeholder);
 }
 
 .project-tech-list {
