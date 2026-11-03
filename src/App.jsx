@@ -61,7 +61,7 @@ const projects = [
     description:
       "Warung Online is an all-in-one digital retail store and management web application designed for Toko Semoga Berkah. The platform enables customers to seamlessly browse items and place orders online, while equipping store owners with integrated backend tools for real-time inventory tracking, a built-in Point of Sale (POS) system, and automated cash flow management.",
     image: "/assets/img/warung-online.png",
-    tech: ["React", "Tailwind CSS"],
+    tech: ["React", "Tailwind CSS", "Node JS"],
     demoUrl: "https://toko-semoga-berkah.vercel.app/",
     codeUrl: "https://github.com/Ramenla/warung-online.git",
   },

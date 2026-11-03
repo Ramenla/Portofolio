@@ -33,27 +33,27 @@ Most requests are a feeling ("make the loading state feel alive", "a calm backgr
 
 [design-matching.md](references/design-matching.md) maps mood words to settings for the lower-level APIs and media looks.
 
-| The user wants | Use |
-| --- | --- |
-| A UI component in characters: button loading, status, toasts, tabs, pills, odometer, chart, AI thinking and streaming, transitions, sign-in, pricing, 404 | `asciify-engine/kit` ([applying-asciify.md](references/applying-asciify.md), [components.md](references/components.md), [kit.md](references/kit.md)) |
-| A background behind a hero, pricing, docs or a section, light or dark | Kit `fieldBackground(el, { preset: 'hero', clear })` (asciify.org's hero) or `background(el, { preset, clear })` with one of the 12 curated presets below |
-| Their word or brand in characters | Kit `wordmark`, or `background()` with `wordField` |
-| Their video in characters on the page | Kit `asciiVideo` |
-| Their photo, video or GIF converted, optionally answering the cursor | Advanced: `asciify` / `asciifyVideo` / `asciifyGif`, plus `mountHover` from `/hover` |
-| A full-bleed field with a look the kit has no option for | Advanced: `mountGlyphField` from `/field` ([glyph-field.md](references/glyph-field.md)) |
-| Their photo or video as finished artwork in a named look: a wallpaper, poster, cover, print or hero artwork ("newsprint", "riso", "phosphor", "engraving", "Lego") | `mountStudio` / `exportStudio` from `/studio` with a look from [looks.md](references/looks.md) |
-| Art styles, saved looks, masks, effects, PNG/MP4/GIF export | Advanced: `mountStudio` from `/studio` ([studio-workspace.md](references/studio-workspace.md)) |
-| Several media and text layers in one artwork | Advanced: `mountStudioProject` from `/studio` ([layered-projects.md](references/layered-projects.md)) |
-| A text banner or lettering | Advanced: `asciifyText` / `renderTextToCanvas` |
-| Headline text visible through media art | Advanced: layered HTML ([layered-hero.md](references/layered-hero.md)) |
+| The user wants                                                                                                                                                     | Use                                                                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A UI component in characters: button loading, status, toasts, tabs, pills, odometer, chart, AI thinking and streaming, transitions, sign-in, pricing, 404          | `asciify-engine/kit` ([applying-asciify.md](references/applying-asciify.md), [components.md](references/components.md), [kit.md](references/kit.md))      |
+| A background behind a hero, pricing, docs or a section, light or dark                                                                                              | Kit `fieldBackground(el, { preset: 'hero', clear })` (asciify.org's hero) or `background(el, { preset, clear })` with one of the 12 curated presets below |
+| Their word or brand in characters                                                                                                                                  | Kit `wordmark`, or `background()` with `wordField`                                                                                                        |
+| Their video in characters on the page                                                                                                                              | Kit `asciiVideo`                                                                                                                                          |
+| Their photo, video or GIF converted, optionally answering the cursor                                                                                               | Advanced: `asciify` / `asciifyVideo` / `asciifyGif`, plus `mountHover` from `/hover`                                                                      |
+| A full-bleed field with a look the kit has no option for                                                                                                           | Advanced: `mountGlyphField` from `/field` ([glyph-field.md](references/glyph-field.md))                                                                   |
+| Their photo or video as finished artwork in a named look: a wallpaper, poster, cover, print or hero artwork ("newsprint", "riso", "phosphor", "engraving", "Lego") | `mountStudio` / `exportStudio` from `/studio` with a look from [looks.md](references/looks.md)                                                            |
+| Art styles, saved looks, masks, effects, PNG/MP4/GIF export                                                                                                        | Advanced: `mountStudio` from `/studio` ([studio-workspace.md](references/studio-workspace.md))                                                            |
+| Several media and text layers in one artwork                                                                                                                       | Advanced: `mountStudioProject` from `/studio` ([layered-projects.md](references/layered-projects.md))                                                     |
+| A text banner or lettering                                                                                                                                         | Advanced: `asciifyText` / `renderTextToCanvas`                                                                                                            |
+| Headline text visible through media art                                                                                                                            | Advanced: layered HTML ([layered-hero.md](references/layered-hero.md))                                                                                    |
 
 ## The kit in one paragraph
 
 Each kit function mounts an `aria-hidden` field over or inside your element, follows its size and border radius, inks it from your theme in light and dark, pauses off screen, honours reduced motion, falls back without WebGL2 to an inert handle that leaves your HTML working, and cleans up on `destroy()`. components.md has 31 components as short snippets with the prompt a person gives, in categories Components, AI, Text, Transitions, Media, Pages and Backgrounds. In React, create the handle in an effect and return its `destroy`.
 
 ```ts
-import { beam } from 'asciify-engine/kit';
-const b = beam(card, { palette: 'mono', mode: 'pulse' });
+import { beam } from "asciify-engine/kit";
+const b = beam(card, { palette: "mono", mode: "pulse" });
 // On unmount: b.destroy();
 ```
 
@@ -103,7 +103,7 @@ The animation sequence on click should be: the halo reaches full size at 50% (le
 `background(element, { preset })` draws every background on asciify.org/backgrounds as a scene of the GPU glyph field, in the site's graphite inks and following the global look. Import presets by name; a page pays only for those it imports. `cursor: false` turns the pointer response off for any of them. Which one suits which surface, and how to keep it calm, is in [applying-asciify.md](references/applying-asciify.md#9-backgrounds).
 
 ```ts
-import { background, swell } from 'asciify-engine/kit';
+import { background, swell } from "asciify-engine/kit";
 const bg = background(pricing, { preset: swell, clear: pricingCopy });
 ```
 
@@ -158,19 +158,19 @@ Choose color intentionally:
 Start around `fontSize: 7`, `fps: 24` or `30`, and `maxRenderDimension: 960`. These are a starting budget, not an FPS guarantee. Increase detail only after checking the actual viewport and target hardware. Use `normalize: true` for flat sources when helpful; compare it against `false` on already graded video because frame-by-frame normalization may change the look.
 
 ```js
-import { asciifyVideo } from 'asciify-engine';
-const stop = await asciifyVideo('/hero.mp4', canvas, {
+import { asciifyVideo } from "asciify-engine";
+const stop = await asciifyVideo("/hero.mp4", canvas, {
   fitTo: hero,
-  objectFit: 'cover',
-  objectPosition: 'center',
+  objectFit: "cover",
+  objectPosition: "center",
   fontSize: 7,
   fps: 24,
   maxRenderDimension: 960,
   options: {
-    charset: ' .:-=+*#%@',
-    colorMode: 'fullcolor',
+    charset: " .:-=+*#%@",
+    colorMode: "fullcolor",
     normalize: false,
-    animationStyle: 'none',
+    animationStyle: "none",
     hoverStrength: 0,
   },
 });
@@ -182,7 +182,9 @@ const stop = await asciifyVideo('/hero.mp4', canvas, {
 `options.charset` is the density ramp. `customText` repeats a string and is a different feature. To incorporate a brand's letters while retaining shading symbols, build a ramp such as:
 
 ```js
-const letters = [...new Set('ASCIIFY'.toUpperCase().replace(/[^A-Z]/g, ''))].join('');
+const letters = [
+  ...new Set("ASCIIFY".toUpperCase().replace(/[^A-Z]/g, "")),
+].join("");
 const charset = ` .:-=+${letters}#%@`;
 ```
 
